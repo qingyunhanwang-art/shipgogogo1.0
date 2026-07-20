@@ -198,9 +198,9 @@ def render_transport_page(current_status: str):
 
             styled = df_display.style
             if "热值分类" in df_display.columns:
-                styled = styled.applymap(color_calorific, subset=["热值分类"])
+                styled = styled.map(color_calorific, subset=["热值分类"])
             if "状态" in df_display.columns:
-                styled = styled.applymap(color_status, subset=["状态"])
+                styled = styled.map(color_status, subset=["状态"])
 
             st.dataframe(styled, use_container_width=True, hide_index=True, height=450)
 

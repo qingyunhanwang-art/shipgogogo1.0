@@ -155,7 +155,7 @@ def _render_df(df, key_prefix):
 
     styled = df_d.style
     if "热值分类" in df_d.columns:
-        styled = styled.applymap(_color_cat, subset=["热值分类"])
+        styled = styled.map(_color_cat, subset=["热值分类"])
 
     st.dataframe(styled, use_container_width=True, hide_index=True, height=450)
     st.caption(f"共 {len(df)} 条")
