@@ -1,0 +1,9 @@
+[server]
+# 云端部署：平台会自动管理端口和地址
+headless = true
+enableXsrfProtection = true
+# 文件上传大小限制（Excel 导入用）
+maxUploadSize = 50
+
+[browser]
+gatherUsageStats = false
