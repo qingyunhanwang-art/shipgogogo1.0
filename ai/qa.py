@@ -62,7 +62,10 @@ def _parse_date(question: str) -> tuple:
     m = re.search(r"(\d{4})[-/](\d{1,2})[-/](\d{1,2})", question)
     if m:
         y, mo, d = map(int, m.groups())
-        return date(y, mo, d), f"{y}年{mo}月{d}日"
+        try:
+            return date(y, mo, d), f"{y}年{mo}月{d}日"
+        except ValueError:
+            pass
 
     # 7月15日
     m = re.search(r"(\d{1,2})月(\d{1,2})日", question)
@@ -72,7 +75,10 @@ def _parse_date(question: str) -> tuple:
         # 如果月份大于当前月份，推测为去年（例如当前1月问12月）
         if mo > today.month:
             y -= 1
-        return date(y, mo, d), f"{y}年{mo}月{d}日"
+        try:
+            return date(y, mo, d), f"{y}年{mo}月{d}日"
+        except ValueError:
+            pass
 
     # 7/15
     m = re.search(r"(\d{1,2})/(\d{1,2})", question)
@@ -81,7 +87,10 @@ def _parse_date(question: str) -> tuple:
         y = today.year
         if mo > today.month:
             y -= 1
-        return date(y, mo, d), f"{y}年{mo}月{d}日"
+        try:
+            return date(y, mo, d), f"{y}年{mo}月{d}日"
+        except ValueError:
+            pass
 
     # 8.15（数字点数字格式）
     m = re.search(r"(\d{1,2})\.(\d{1,2})", question)
@@ -90,7 +99,10 @@ def _parse_date(question: str) -> tuple:
         y = today.year
         if mo > today.month:
             y -= 1
-        return date(y, mo, d), f"{y}年{mo}月{d}日"
+        try:
+            return date(y, mo, d), f"{y}年{mo}月{d}日"
+        except ValueError:
+            pass
 
     return None, None
 
